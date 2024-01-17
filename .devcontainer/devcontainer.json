@@ -1,0 +1,27 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+	"name": "Hello Freshed VueJS and Python project",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"yunduo.color-highlight-css-color-4",
+				"yzhang.markdown-all-in-one",
+				"vue.volar",
+				"ms-python.vscode-pylance",
+				"ms-python.python"
+			],
+			"settings": {
+				"files.autoSave": "onFocusChange",
+				"editor.formatOnSave": true
+			}
+		}
+	},
+	"remoteUser": "node",
+	"runArgs": [
+		"--network=host"
+	]
+}
