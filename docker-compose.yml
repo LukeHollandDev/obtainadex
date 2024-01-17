@@ -1,0 +1,12 @@
+version: '3.8'
+name: obtainadex
+
+services:
+  webapp:
+    build:
+      context: ./frontend
+      dockerfile: ../Dockerfile
+    image: obtainadex-webapp
+    ports:
+      - '3003:3000'
+    command: sh -c "npm run start"

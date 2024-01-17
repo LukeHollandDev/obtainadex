@@ -30,7 +30,7 @@ const handleExport = (data: any) => {
 
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'yourFile.json';
+  a.download = 'pokemon_obtainadex_data.json';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -141,12 +141,12 @@ export default function Home() {
       <div className='flex gap-5 justify-center'>
         <div className='flex items-center'>
           <svg className="w-8 h-8 text-black" fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M6 18L18 6M6 6l12 12"></path>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
           <span>Obtained</span>
         </div>
         <div className='flex items-center'>
-          <Image
+          <img
             alt='Desaturated Bulbasaur'
             src={'https://www.serebii.net/pokemonhome/pokemon/80/001.png'}
             width={32}
@@ -187,7 +187,7 @@ export default function Home() {
                 {box.map((pokemon, pIndex) => (
                   <div key={pIndex} className='w-1/6 cursor-pointer flex justify-center'>
                     <div className='relative'>
-                      <Image
+                      <img
                         alt={pokemon.name}
                         src={'https://www.serebii.net/' + pokemon.img_url}
                         width={60}
@@ -199,7 +199,7 @@ export default function Home() {
                         selectedPokemon[index * 30 + pIndex].status === 1 ? (
                           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" onClick={() => handlePokemonClick(index * 30 + pIndex)}>
                             <svg className="w-8 h-8 text-black" fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M6 18L18 6M6 6l12 12"></path>
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                           </div>
                         ) : null
