@@ -1,6 +1,6 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
-	"name": "Hello Freshed VueJS and Python project",
+	"name": "Obtainadex NodeJS and Python Container",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},

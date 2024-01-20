@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import pokemonData from '@/public/pokemon.json';
+import obtainedIcon from '@/public/obtained.svg'
+import ownTrainerId from '@/public/own-trainer-id.svg'
 import { useState, useEffect, useRef } from 'react';
 
 interface Pokemon {
@@ -98,6 +100,7 @@ export default function Home() {
           // set the pokemon state and save to localstorage
           setSelectedPokemon(importedJson);
           savePokemon(importedJson)
+          setError(null)
         } catch (error) {
           console.log(error)
         }
@@ -111,6 +114,24 @@ export default function Home() {
       fileInputRef.current.click();
     }
   };
+
+  const markAllByBox = (boxIndex: number, status: number | null) => {
+    const startIndex = boxIndex * 30
+    let endIndex = startIndex + 30
+    if (endIndex >= selectedPokemon.length) {
+      endIndex = selectedPokemon.length - 1;
+    }
+    const updatedSelectedPokemon = [...selectedPokemon];
+    for (let i = startIndex; i < endIndex; i++) {
+      if (status !== null) {
+        updatedSelectedPokemon[i].status = status
+      } else {
+        updatedSelectedPokemon[i].status = getObtainedStatus(updatedSelectedPokemon[i].status)
+      }
+    }
+    setSelectedPokemon(updatedSelectedPokemon);
+    savePokemon(updatedSelectedPokemon)
+  }
 
   if (selectedPokemon.length === 0) {
     return (
@@ -138,69 +159,84 @@ export default function Home() {
   return (
     <main>
       <br />
-      <div className='flex gap-5 justify-center'>
-        <div className='flex items-center'>
-          <svg className="w-8 h-8 text-black" fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-          <span>Obtained</span>
+      <div>
+        <div className='flex gap-5 justify-center'>
+          <div className='flex items-center gap-1'>
+            <Image
+              alt='Pokemon Obtained Icon'
+              src={obtainedIcon}
+              width={25}
+              height={25}
+              className='obtained-id'
+            />
+            <span>Obtained</span>
+          </div>
+          <div className='flex items-center gap-1'>
+            <Image
+              alt='Pokemon Own Trainer ID Icon'
+              src={ownTrainerId}
+              width={25}
+              height={25}
+              className='obtained-id'
+            />
+            <span>Own trainer id</span>
+          </div>
         </div>
-        <div className='flex items-center'>
-          <img
-            alt='Desaturated Bulbasaur'
-            src={'https://www.serebii.net/pokemonhome/pokemon/80/001.png'}
-            width={32}
-            height={32}
-            className='obtained-id'
+        <div className='flex flex-col justify-center text-center'>
+          <p>State is stored to localstorage so clearing application data (website cache) will reset.</p>
+          <p>Use buttons below to import or export data as JSON.</p>
+        </div>
+        <div className='flex gap-2 justify-center'>
+          <input
+            type="file"
+            accept=".json"
+            onChange={handleImport}
+            ref={fileInputRef}
+            style={{ display: 'none' }}
           />
-          <span>Own trainer id</span>
+          <button className="btn btn-sm" onClick={() => handleImportClick()}>Import</button>
+          <button className="btn btn-sm" onClick={() => handleExport(selectedPokemon)}>Export</button>
         </div>
+        {error ? (
+          <div className='flex justify-center text-center text-error'>
+            {error}
+          </div>
+        ) : null
+        }
       </div>
-      <div className='flex flex-col justify-center text-center'>
-        <p>State is stored to localstorage so clearing application data will reset.</p>
-        <p>Use buttons below to import or export data as JSON.</p>
-      </div>
-      <div className='flex gap-2 justify-center'>
-        <input
-          type="file"
-          accept=".json"
-          onChange={handleImport}
-          ref={fileInputRef}
-          style={{ display: 'none' }}
-        />
-        <button className="btn btn-sm" onClick={() => handleImportClick()}>Import</button>
-        <button className="btn btn-sm" onClick={() => handleExport(selectedPokemon)}>Export</button>
-      </div>
-      {error ? (
-        <div className='flex justify-center text-center text-error'>
-          {error}
-        </div>
-      ) : null
-      }
 
       <div className='flex justify-center'>
         <div className='flex flex-wrap m-1 max-w-5xl justify-center'>
           {pokemonData.map((box, index) => (
-            <div key={index} className='text-center underline max-w-md'>
-              Box {index + 1}
+            <div key={index} className='text-center max-w-md'>
+              <button className='btn btn-sm' onClick={() => markAllByBox(index, null)}>mark all</button>
+              {' '}
+              <span className='underline'>Box {index + 1}</span>
+              {' '}
+              <button className='btn btn-sm' onClick={() => markAllByBox(index, 0)}>clear all</button>
               <div className='flex flex-wrap border-2 m-1 p-2'>
                 {box.map((pokemon, pIndex) => (
                   <div key={pIndex} className='w-1/6 cursor-pointer flex justify-center'>
                     <div className='relative'>
-                      <img
+                      <Image
                         alt={pokemon.name}
                         src={'https://www.serebii.net/' + pokemon.img_url}
                         width={60}
                         height={60}
-                        className={selectedPokemon[index * 30 + pIndex].status === 2 ? 'obtained-id' : ''}
+                        className={selectedPokemon[index * 30 + pIndex].status === 2 ? 'grayscale' : ''}
                         onClick={() => handlePokemonClick(index * 30 + pIndex)}
                       />
                       {
                         selectedPokemon[index * 30 + pIndex].status === 1 ? (
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" onClick={() => handlePokemonClick(index * 30 + pIndex)}>
-                            <svg className="w-8 h-8 text-black" fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
+                          <div className="absolute top-1" onClick={() => handlePokemonClick(index * 30 + pIndex)}>
+                            <Image alt="Pokemon Obtained Icon" src={obtainedIcon} height={20} width={20} />
+                          </div>
+                        ) : null
+                      }
+                      {
+                        selectedPokemon[index * 30 + pIndex].status === 2 ? (
+                          <div className="absolute top-1" onClick={() => handlePokemonClick(index * 30 + pIndex)}>
+                            <Image alt="Pokemon Own Trainer ID Icon" src={ownTrainerId} height={20} width={20} />
                           </div>
                         ) : null
                       }
