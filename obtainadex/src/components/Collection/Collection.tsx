@@ -7,13 +7,15 @@ export default function Collection() {
 
   return (
     <div>
-      <h2>Collection</h2>
-
       {error ? <p>Handle error here...</p> : null}
 
       {boxes.length > 0 && !error
-        ? boxes.map((box: Pokemon[], i: number) =>
-          Box({ pokemon: box, key: i })
+        ? (
+          <div className="flex flex-wrap gap-6 justify-center">
+            {boxes.map((box: Pokemon[], i: number) =>
+              Box({ pokemon: box, key: i })
+            )}
+          </div>
         )
         : null}
     </div>

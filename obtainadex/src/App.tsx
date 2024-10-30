@@ -1,13 +1,12 @@
 import Collection from "./components/Collection/Collection.tsx";
 import Header from "./components/Header/Header.tsx";
-import Legend from "./components/Legend/Legend.tsx";
 
 function App() {
   return (
-    <main>
+    <main className="m-4">
       <Header />
 
-      <Legend />
+      <hr className="my-4 mx-[-1rem]" />
 
       <Collection />
     </main>
