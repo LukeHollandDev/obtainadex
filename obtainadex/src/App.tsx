@@ -1,11 +1,11 @@
-import './App.css'
+import "./App.css";
 // @deno-types="@types/react"
-import { useState } from 'react'
+import { useState } from "react";
 // @ts-expect-error Unable to infer type at the moment
-import reactLogo from './assets/react.svg'
+import reactLogo from "./assets/react.svg";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -31,7 +31,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
