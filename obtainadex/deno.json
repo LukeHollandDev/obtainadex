@@ -12,7 +12,7 @@
     "jsxImportSourceTypes": "@types/react"
   },
   "lint": {
-    "exclude": [".vite/"]
+    "exclude": [".vite/", "dist/"]
   },
   "fmt": {
     "exclude": [".vite/", "dist/"]
