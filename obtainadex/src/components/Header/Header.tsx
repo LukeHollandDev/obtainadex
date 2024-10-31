@@ -10,8 +10,8 @@ export default function Header() {
       </h1>
 
       <p className="text-lg">
-        Obtainadex has been created to has been created to make it easier to
-        track the completion of a form dex.
+        Obtainadex has been created to make it easier to track the completion of
+        a form dex.
       </p>
 
       <Credit />

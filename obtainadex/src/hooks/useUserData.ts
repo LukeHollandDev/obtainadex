@@ -58,7 +58,9 @@ function importFromJson(object: any): {
   return { data: saveUserData(userData), error: null };
 }
 
-function exportUserDataToJson(data: UserDataPokemon[]) {
+function exportUserDataToJson() {
+  const data = loadUserData();
+
   const jsonString = JSON.stringify(data, null, 2);
   const blob = new Blob([jsonString], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -80,7 +82,7 @@ function exportUserDataToJson(data: UserDataPokemon[]) {
 function updateUserData(data: UserDataPokemon, userData: UserDataPokemon[]) {
   const index = userData.findIndex(
     (entry: UserDataPokemon) =>
-      entry.name === data.name && entry.img_url === data.img_url,
+      entry.name === data.name && entry.img_url === data.img_url
   );
 
   if (index === -1) {
@@ -94,7 +96,7 @@ function updateUserData(data: UserDataPokemon, userData: UserDataPokemon[]) {
 
 function updateUserDataBulk(
   data: UserDataPokemon[],
-  userData: UserDataPokemon[],
+  userData: UserDataPokemon[]
 ) {
   const indices: number[] = [];
 
@@ -103,8 +105,8 @@ function updateUserDataBulk(
     indices.push(
       userData.findIndex(
         (e: UserDataPokemon) =>
-          e.name === entry.name && e.img_url === entry.img_url,
-      ),
+          e.name === entry.name && e.img_url === entry.img_url
+      )
     )
   );
 
