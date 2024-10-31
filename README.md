@@ -1,10 +1,25 @@
 # Obtainadex
 
-TODO List:
+```json
+// UserData
+{
+  "Bulbasaur_746326141": {
+    "status": "0 | 1 | 2"
+  }
+}
 
-- Look into updating how the data is stored regarding the users data.
-  - Currently doing expensive searches due to not using a hash map.
-  - Try to change to use hash map, will need to also account for migration from older format.
+// PokemonBoxData
+[
+  // Box
+  [
+    {
+      "name": "Bulbasaur",
+      "img_url": "/pokemonhome/pokemon/80/001.png",
+      "img_url_hash": 746326141
+    }
+  ]
+]
+```
 
 ## Scraper
 
