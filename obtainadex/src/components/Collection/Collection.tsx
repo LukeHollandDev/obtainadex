@@ -13,15 +13,13 @@ export default function Collection() {
     <div>
       {error ? <p>Handle error here...</p> : null}
 
-      {boxes.length > 0 && !error
-        ? (
-          <div className="flex flex-wrap gap-6 justify-center">
-            {boxes.map((box: Pokemon[], i: number) =>
-              Box({ pokemon: box, userData, key: i })
-            )}
-          </div>
-        )
-        : null}
+      {boxes.length > 0 && !error ? (
+        <div className="flex flex-wrap gap-6 justify-center">
+          {boxes.map((box: Pokemon[], i: number) =>
+            Box({ pokemon: box, userData, boxIndex: i })
+          )}
+        </div>
+      ) : null}
     </div>
   );
 }
