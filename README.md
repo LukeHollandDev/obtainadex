@@ -3,7 +3,7 @@
 ```json
 // UserData
 {
-  "Bulbasaur_746326141": {
+  "Bulbasaur_-1506846118": {
     "status": "0 | 1 | 2"
   }
 }
@@ -15,7 +15,7 @@
     {
       "name": "Bulbasaur",
       "img_url": "/pokemonhome/pokemon/80/001.png",
-      "img_url_hash": 746326141
+      "hash": -1506846118
     }
   ]
 ]

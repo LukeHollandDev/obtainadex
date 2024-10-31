@@ -33,7 +33,7 @@ for i, box in enumerate(pokemon_boxes):
             {
                 "name": pokemon_name,
                 "img_url": pokemon_img_url,
-                "img_url_hash": hash_code(pokemon_img_url),
+                "hash": hash_code(pokemon_name + pokemon_img_url),
             }
         )
 
