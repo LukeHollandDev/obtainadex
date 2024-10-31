@@ -1,11 +1,12 @@
-import type { Pokemon } from "../../types.ts";
+import type { Pokemon, UserDataPokemon } from "../../types.ts";
 
 interface BoxProps {
   pokemon: Pokemon[];
+  userData: UserDataPokemon[];
   key?: number;
 }
 
-export default function Box({ pokemon, key = 0 }: BoxProps) {
+export default function Box({ pokemon, userData, key = 0 }: BoxProps) {
   if (pokemon.length === 0) {
     return;
   }
@@ -32,21 +33,51 @@ export default function Box({ pokemon, key = 0 }: BoxProps) {
       </div>
       <hr />
       <div className="grid grid-cols-6 gap-2 p-2">
-        {pokemon.map((poke: Pokemon, i: number) => renderPokemon(poke, i))}
+        {pokemon.map((poke: Pokemon, i: number) =>
+          renderPokemon(poke, i, userData)
+        )}
       </div>
     </div>
   );
 }
 
-function renderPokemon(poke: Pokemon, key: number) {
+function renderPokemon(poke: Pokemon, key: number, data: UserDataPokemon[]) {
+  const foundData = data.find(
+    (entry: UserDataPokemon) =>
+      poke.name === entry.name && poke.img_url === entry.img_url
+  );
+
+  const status = foundData?.status;
+
   return (
-    <div key={key}>
+    <div key={key} className="relative">
       <img
         alt={poke.name}
         src={"https://www.serebii.net/" + poke.img_url}
         height={60}
         width={60}
       />
+      {status === 1 ? (
+        <div
+          className="absolute top-1"
+          onClick={() => console.log("mark obtained")}
+        >
+          <img alt="Obtained Icon" src="/obtained.svg" width={20} height={20} />
+        </div>
+      ) : null}
+      {status === 2 ? (
+        <div
+          className="absolute top-1"
+          onClick={() => console.log("mark own trainer")}
+        >
+          <img
+            alt="Obtained Icon"
+            src="/own-trainer-id.svg"
+            width={20}
+            height={20}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

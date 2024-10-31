@@ -1,5 +1,11 @@
 # Obtainadex
 
+TODO List:
+
+- Look into updating how the data is stored regarding the users data.
+  - Currently doing expensive searches due to not using a hash map.
+  - Try to change to use hash map, will need to also account for migration from older format.
+
 ## Scraper
 
 Scraper is a Python tool which scrapes https://www.serebii.net/pokemonhome/depositablepokemon.shtml to obtain the Pokemon data.
