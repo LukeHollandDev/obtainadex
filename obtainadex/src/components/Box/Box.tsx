@@ -44,7 +44,7 @@ export default function Box({ pokemon, userData, key = 0 }: BoxProps) {
 function renderPokemon(poke: Pokemon, key: number, data: UserDataPokemon[]) {
   const foundData = data.find(
     (entry: UserDataPokemon) =>
-      poke.name === entry.name && poke.img_url === entry.img_url
+      poke.name === entry.name && poke.img_url === entry.img_url,
   );
 
   const status = foundData?.status;
@@ -57,27 +57,36 @@ function renderPokemon(poke: Pokemon, key: number, data: UserDataPokemon[]) {
         height={60}
         width={60}
       />
-      {status === 1 ? (
-        <div
-          className="absolute top-1"
-          onClick={() => console.log("mark obtained")}
-        >
-          <img alt="Obtained Icon" src="/obtained.svg" width={20} height={20} />
-        </div>
-      ) : null}
-      {status === 2 ? (
-        <div
-          className="absolute top-1"
-          onClick={() => console.log("mark own trainer")}
-        >
-          <img
-            alt="Obtained Icon"
-            src="/own-trainer-id.svg"
-            width={20}
-            height={20}
-          />
-        </div>
-      ) : null}
+      {status === 1
+        ? (
+          <div
+            className="absolute top-1"
+            onClick={() => console.log("mark obtained")}
+          >
+            <img
+              alt="Obtained Icon"
+              src="/obtained.svg"
+              width={20}
+              height={20}
+            />
+          </div>
+        )
+        : null}
+      {status === 2
+        ? (
+          <div
+            className="absolute top-1"
+            onClick={() => console.log("mark own trainer")}
+          >
+            <img
+              alt="Obtained Icon"
+              src="/own-trainer-id.svg"
+              width={20}
+              height={20}
+            />
+          </div>
+        )
+        : null}
     </div>
   );
 }
