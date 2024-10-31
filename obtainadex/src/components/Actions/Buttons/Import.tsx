@@ -1,8 +1,8 @@
 import { ChangeEvent, useRef } from "react";
-import { useUserData } from "../../../hooks/useUserData.ts";
+import { useUserPokemonDataMap } from "../../../hooks/useUserPokemonDataMap.ts";
 
 export default function Import() {
-  const { import: importUserData } = useUserData();
+  const { importData } = useUserPokemonDataMap();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -23,12 +23,10 @@ export default function Import() {
     const reader = new FileReader();
     reader.onload = (e) => {
       const contents = e.target?.result as string;
-      const result = importUserData(contents);
+      const result = importData(contents);
       if (result.error) {
         // TODO: add some error handling here
         console.error(result.error);
-      } else {
-        console.log("Imported Data:", result.data);
       }
     };
     reader.readAsText(file);

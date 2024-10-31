@@ -1,43 +1,28 @@
-import { useState } from "react";
-import { useUserData } from "../../hooks/useUserData.ts";
-import type { Pokemon, UserDataPokemon } from "../../types.ts";
+import { type Pokemon } from "../../types.ts";
+
+interface PokemonSpaceProps {
+  pokemon: Pokemon;
+  index: number;
+  status: 1 | 2 | null;
+  onUpdateStatus: (pokemon: Pokemon, newStatus: 1 | 2 | null) => void;
+}
 
 export default function PokemonSpace({
   pokemon,
   index,
-  data,
-}: {
-  pokemon: Pokemon;
-  index: number;
-  data: UserDataPokemon[];
-}) {
-  const { update } = useUserData();
-
-  const foundData = data.find(
-    (entry: UserDataPokemon) =>
-      pokemon.name === entry.name && pokemon.img_url === entry.img_url
-  );
-
-  const [status, setStatus] = useState<1 | 2>(foundData?.status);
-
+  status,
+  onUpdateStatus,
+}: PokemonSpaceProps) {
   const handlePokemonClick = () => {
-    let newStatus: 1 | 2 | undefined;
+    let newStatus: 1 | 2 | null = null;
 
     if (!status) {
       newStatus = 1;
     } else if (status === 1) {
       newStatus = 2;
-    } else if (status === 2) {
-      newStatus = undefined;
     }
 
-    if (newStatus !== undefined) {
-      update(
-        { name: pokemon.name, img_url: pokemon.img_url, status: newStatus },
-        data
-      );
-      setStatus(newStatus);
-    }
+    onUpdateStatus(pokemon, newStatus);
   };
 
   return (
@@ -49,21 +34,30 @@ export default function PokemonSpace({
         width={60}
         onClick={handlePokemonClick}
       />
-      {status === 1 ? (
-        <div className="absolute top-1">
-          <img alt="Obtained Icon" src="/obtained.svg" width={20} height={20} />
-        </div>
-      ) : null}
-      {status === 2 ? (
-        <div className="absolute top-1">
-          <img
-            alt="Obtained Icon"
-            src="/own-trainer-id.svg"
-            width={20}
-            height={20}
-          />
-        </div>
-      ) : null}
+      {status === 1
+        ? (
+          <div className="absolute top-1">
+            <img
+              alt="Obtained Icon"
+              src="/obtained.svg"
+              width={20}
+              height={20}
+            />
+          </div>
+        )
+        : null}
+      {status === 2
+        ? (
+          <div className="absolute top-1">
+            <img
+              alt="Obtained Icon"
+              src="/own-trainer-id.svg"
+              width={20}
+              height={20}
+            />
+          </div>
+        )
+        : null}
     </div>
   );
 }
