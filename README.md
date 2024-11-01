@@ -1,25 +1,8 @@
 # Obtainadex
 
-```json
-// UserData
-{
-  "Bulbasaur_-1506846118": {
-    "status": "0 | 1 | 2"
-  }
-}
+TODO:
 
-// PokemonBoxData
-[
-  // Box
-  [
-    {
-      "name": "Bulbasaur",
-      "img_url": "/pokemonhome/pokemon/80/001.png",
-      "hash": -1506846118
-    }
-  ]
-]
-```
+- Update the PDF to ensure the order of the Pokemon is based on the box order.
 
 ## Scraper
 

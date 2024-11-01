@@ -24,6 +24,7 @@
     "@types/react": "npm:@types/react@^18.3.11",
     "@types/react-dom": "npm:@types/react-dom@^18.3.1",
     "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@^3.7.1",
+    "pdf-lib": "npm:pdf-lib@^1.17.1",
     "react": "npm:react@^18.3.1",
     "react-dom": "npm:react-dom@^18.3.1",
     "tailwindcss": "npm:tailwindcss@^3.4.14",

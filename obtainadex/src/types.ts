@@ -14,6 +14,11 @@ export interface UserPokemonDataMap {
   [key: string]: UserPokemonData;
 }
 
+export interface PDFPokemon {
+  name: string;
+  status: 1 | 2 | null;
+}
+
 // deno-lint-ignore no-explicit-any
 export function isPokemon(object: any) {
   return "name" in object && "img_url" in object && "hash" in object;
