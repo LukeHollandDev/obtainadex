@@ -1,4 +1,6 @@
 import { type Pokemon } from "../../types.ts";
+import obtainedSvg from "../../assets/obtained.svg";
+import ownTrainerIdSvg from "../../assets/own-trainer-id.svg";
 
 interface PokemonSpaceProps {
   pokemon: Pokemon;
@@ -37,12 +39,7 @@ export default function PokemonSpace({
       {status === 1
         ? (
           <div className="absolute top-1">
-            <img
-              alt="Obtained Icon"
-              src="/obtained.svg"
-              width={20}
-              height={20}
-            />
+            <img alt="Obtained Icon" src={obtainedSvg} width={20} height={20} />
           </div>
         )
         : null}
@@ -50,8 +47,8 @@ export default function PokemonSpace({
         ? (
           <div className="absolute top-1">
             <img
-              alt="Obtained Icon"
-              src="/own-trainer-id.svg"
+              alt="Own Trainer ID Icon"
+              src={ownTrainerIdSvg}
               width={20}
               height={20}
             />
