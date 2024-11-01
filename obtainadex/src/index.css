@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-gradient {
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #3d7eaa,
+    #b83d7e
+  ); /* Mixed color (#b83d7e) added */
+  background-size: 200% 100%; /* Adjust for animation effect */
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block;
+  animation: shimmer 3s infinite
+    linear; /* Animation for subtle shimmer effect */
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0; /* Start off-screen */
+  }
+  50% {
+    background-position: 0 0; /* Center position for the shimmer */
+  }
+  100% {
+    background-position: 100% 0; /* Move to the other side */
+  }
+}

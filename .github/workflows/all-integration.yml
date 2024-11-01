@@ -1,0 +1,54 @@
+# runs on all pushes; lints, tests and builds to find breaking changes
+name: Integration
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Run linter
+        run: cd obtainadex && deno lint
+
+  # TODO: maybe add tests lel
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+
+  #     - uses: denoland/setup-deno@v2
+  #       with:
+  #         deno-version: v2.x
+
+  #     - name: Run tests
+  #       run: cd obtainadex && deno test
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Build the application
+        run: cd obtainadex && deno task build
+
+      - name: Upload build as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: obtainadex
+          path: ./dist

@@ -1,0 +1,33 @@
+{
+  "tasks": {
+    "dev": "deno run -A --node-modules-dir npm:vite",
+    "build": "deno run tailwind && deno run -A --node-modules-dir npm:vite build",
+    "preview": "deno run -A --node-modules-dir npm:vite preview",
+    "serve": "deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
+    "tailwind": "deno run --allow-read --allow-write --allow-env --allow-sys npm:tailwindcss -i ./src/index.css -o ./public/css/tailwind.css --minify"
+  },
+  "compilerOptions": {
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "jsxImportSourceTypes": "@types/react"
+  },
+  "lint": {
+    "exclude": [".vite/", "dist/", "public/"]
+  },
+  "fmt": {
+    "exclude": [".vite/", "dist/", "public/"]
+  },
+  "nodeModulesDir": "auto",
+  "imports": {
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.0",
+    "@types/react": "npm:@types/react@^18.3.11",
+    "@types/react-dom": "npm:@types/react-dom@^18.3.1",
+    "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@^3.7.1",
+    "pdf-lib": "npm:pdf-lib@^1.17.1",
+    "react": "npm:react@^18.3.1",
+    "react-dom": "npm:react-dom@^18.3.1",
+    "tailwindcss": "npm:tailwindcss@^3.4.14",
+    "vite": "npm:vite@^5.4.9"
+  }
+}
