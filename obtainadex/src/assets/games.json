@@ -1,0 +1,188 @@
+{
+  "games": [
+    {
+      "id": "scarlet-violet",
+      "name": "Pokemon Scarlet/Violet",
+      "generation": 9,
+      "region": "Paldea",
+      "dexes": [
+        {
+          "id": "paldea",
+          "name": "Paldea Dex",
+          "type": "regional",
+          "boxes": [
+            [
+              {
+                "name": "Sprigatito",
+                "img_url": "/pokedexsv/pokemon/001.png",
+                "hash": -1234567890,
+                "dex_number": 1
+              },
+              {
+                "name": "Floragato",
+                "img_url": "/pokedexsv/pokemon/002.png",
+                "hash": -1234567891,
+                "dex_number": 2
+              },
+              {
+                "name": "Meowscarada",
+                "img_url": "/pokedexsv/pokemon/003.png",
+                "hash": -1234567892,
+                "dex_number": 3
+              },
+              {
+                "name": "Fuecoco",
+                "img_url": "/pokedexsv/pokemon/004.png",
+                "hash": -1234567893,
+                "dex_number": 4
+              },
+              {
+                "name": "Crocalor",
+                "img_url": "/pokedexsv/pokemon/005.png",
+                "hash": -1234567894,
+                "dex_number": 5
+              },
+              {
+                "name": "Skeledirge",
+                "img_url": "/pokedexsv/pokemon/006.png",
+                "hash": -1234567895,
+                "dex_number": 6
+              },
+              {
+                "name": "Quaxly",
+                "img_url": "/pokedexsv/pokemon/007.png",
+                "hash": -1234567896,
+                "dex_number": 7
+              },
+              {
+                "name": "Quaxwell",
+                "img_url": "/pokedexsv/pokemon/008.png",
+                "hash": -1234567897,
+                "dex_number": 8
+              },
+              {
+                "name": "Quaquaval",
+                "img_url": "/pokedexsv/pokemon/009.png",
+                "hash": -1234567898,
+                "dex_number": 9
+              },
+              {
+                "name": "Lechonk",
+                "img_url": "/pokedexsv/pokemon/010.png",
+                "hash": -1234567899,
+                "dex_number": 10
+              }
+            ]
+          ],
+          "pokemon_count": 10
+        },
+        {
+          "id": "kitakami",
+          "name": "Kitakami Dex",
+          "type": "regional",
+          "boxes": [
+            [
+              {
+                "name": "Ekans",
+                "img_url": "/pokedexsv/pokemon/023.png",
+                "hash": -987654321,
+                "dex_number": 1
+              },
+              {
+                "name": "Arbok",
+                "img_url": "/pokedexsv/pokemon/024.png",
+                "hash": -987654322,
+                "dex_number": 2
+              },
+              {
+                "name": "Pikachu",
+                "img_url": "/pokedexsv/pokemon/025.png",
+                "hash": -987654323,
+                "dex_number": 3
+              },
+              {
+                "name": "Raichu",
+                "img_url": "/pokedexsv/pokemon/026.png",
+                "hash": -987654324,
+                "dex_number": 4
+              },
+              {
+                "name": "Vulpix",
+                "img_url": "/pokedexsv/pokemon/037.png",
+                "hash": -987654325,
+                "dex_number": 5
+              }
+            ]
+          ],
+          "pokemon_count": 5
+        }
+      ]
+    },
+    {
+      "id": "sword-shield",
+      "name": "Pokemon Sword/Shield",
+      "generation": 8,
+      "region": "Galar",
+      "dexes": [
+        {
+          "id": "galar",
+          "name": "Galar Dex",
+          "type": "regional",
+          "boxes": [
+            [
+              {
+                "name": "Grookey",
+                "img_url": "/pokedexswsh/pokemon/001.png",
+                "hash": 123456789,
+                "dex_number": 1
+              },
+              {
+                "name": "Thwackey",
+                "img_url": "/pokedexswsh/pokemon/002.png",
+                "hash": 123456790,
+                "dex_number": 2
+              },
+              {
+                "name": "Rillaboom",
+                "img_url": "/pokedexswsh/pokemon/003.png",
+                "hash": 123456791,
+                "dex_number": 3
+              },
+              {
+                "name": "Scorbunny",
+                "img_url": "/pokedexswsh/pokemon/004.png",
+                "hash": 123456792,
+                "dex_number": 4
+              },
+              {
+                "name": "Raboot",
+                "img_url": "/pokedexswsh/pokemon/005.png",
+                "hash": 123456793,
+                "dex_number": 5
+              },
+              {
+                "name": "Cinderace",
+                "img_url": "/pokedexswsh/pokemon/006.png",
+                "hash": 123456794,
+                "dex_number": 6
+              },
+              {
+                "name": "Sobble",
+                "img_url": "/pokedexswsh/pokemon/007.png",
+                "hash": 123456795,
+                "dex_number": 7
+              },
+              {
+                "name": "Drizzile",
+                "img_url": "/pokedexswsh/pokemon/008.png",
+                "hash": 123456796,
+                "dex_number": 8
+              }
+            ]
+          ],
+          "pokemon_count": 8
+        }
+      ]
+    }
+  ]
+}

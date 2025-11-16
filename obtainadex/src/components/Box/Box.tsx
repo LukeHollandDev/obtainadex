@@ -12,13 +12,15 @@ interface BoxProps {
   pokemon: Pokemon[];
   userData: UserPokemonDataMap;
   boxIndex?: number;
+  gameId: string;
+  dexId: string;
 }
 
-export default function Box({ pokemon, userData, boxIndex = 0 }: BoxProps) {
+export default function Box({ pokemon, userData, boxIndex = 0, gameId, dexId }: BoxProps) {
   const [userPokemonData, setUserPokemonData] = useState<UserPokemonDataMap>(
     userData,
   );
-  const { saveData } = useUserPokemonDataMap();
+  const { saveData } = useUserPokemonDataMap(gameId, dexId);
 
   if (pokemon.length === 0) {
     return null;

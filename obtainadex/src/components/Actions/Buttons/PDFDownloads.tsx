@@ -1,6 +1,7 @@
 import { hashCode } from "../../../hash.ts";
 import { usePokemonData } from "../../../hooks/usePokemonData.ts";
 import { useUserPokemonDataMap } from "../../../hooks/useUserPokemonDataMap.ts";
+import { useGameRegistry } from "../../../hooks/useGameRegistry.ts";
 import generatePdf from "../../../pdf/generatePdf.ts";
 import type {
   PDFPokemon,
@@ -8,9 +9,19 @@ import type {
   UserPokemonDataMap,
 } from "../../../types.ts";
 
-export default function PDFDownloads() {
-  const { loadData } = useUserPokemonDataMap();
-  const { boxes, error: pokemonError } = usePokemonData();
+interface PDFDownloadsProps {
+  gameId: string;
+  dexId: string;
+}
+
+export default function PDFDownloads({ gameId, dexId }: PDFDownloadsProps) {
+  const { loadData } = useUserPokemonDataMap(gameId, dexId);
+  const { boxes, error: pokemonError } = usePokemonData(gameId, dexId);
+  const { getGame, getDex } = useGameRegistry();
+
+  const game = getGame(gameId);
+  const dex = getDex(gameId, dexId);
+  const pdfPrefix = `${game?.name || gameId} - ${dex?.name || dexId}`;
 
   if (pokemonError) {
     console.error(pokemonError);
@@ -40,21 +51,19 @@ export default function PDFDownloads() {
     const { data, error } = loadData();
 
     if (error) {
-      // TODO: handle the error
       console.error(error);
       return null;
     }
 
     const unobtained: PDFPokemon[] = getUnobtainedPokemon(data);
 
-    generatePdf("unobtained", unobtained);
+    generatePdf("unobtained", unobtained, pdfPrefix);
   };
 
   const downloadNotOwnId = () => {
     const { data, error } = loadData();
 
     if (error) {
-      // TODO: handle the error
       console.error(error);
       return null;
     }
@@ -76,14 +85,13 @@ export default function PDFDownloads() {
       });
     }
 
-    generatePdf("not-own-id", notOwnId);
+    generatePdf("not-own-id", notOwnId, pdfPrefix);
   };
 
   const downloadAll = () => {
     const { data, error } = loadData();
 
     if (error) {
-      // TODO: handle the error
       console.error(error);
       return null;
     }
@@ -98,11 +106,11 @@ export default function PDFDownloads() {
       });
     });
 
-    generatePdf("all", all);
+    generatePdf("all", all, pdfPrefix);
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-1">
       <button
         onClick={downloadUnobtained}
         className="text-orange-600 hover:bg-orange-100 font-semibold py-1 px-3 rounded-md transition duration-200"
@@ -121,6 +129,6 @@ export default function PDFDownloads() {
       >
         all
       </button>
-    </>
+    </div>
   );
 }

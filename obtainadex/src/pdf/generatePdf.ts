@@ -4,6 +4,7 @@ import type { PDFPokemon } from "../types.ts";
 export default async function generatePdf(
   filename: string,
   data: PDFPokemon[],
+  prefix?: string,
 ) {
   const pdfDoc = await PDFDocument.create();
   const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
@@ -81,7 +82,10 @@ export default async function generatePdf(
   );
   const a = document.createElement("a");
   a.href = url;
-  a.download = `obtainadex-${filename}.pdf`;
+  const pdfFilename = prefix
+    ? `obtainadex-${prefix}-${filename}.pdf`
+    : `obtainadex-${filename}.pdf`;
+  a.download = pdfFilename;
   document.body.appendChild(a); // Append to body to work in Firefox
   a.click();
   a.remove();
