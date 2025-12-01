@@ -1,18 +1,39 @@
-# Obtainadex Refresh
+# Obtainadex
 
-Currently, Obtainadex only shows the recommended box layout
-from https://www.serebii.net/pokemonhome/depositablepokemon.shtml, but since Pokémon Home offers rewards for
-completing regional-dexes in games, it might be useful to have a per-game and per-game-dex view.
+Obtainadex is a digital checklist to help you complete your Pokédex in all of your Pokémon Switch games and Pokémon
+Home. It provides a nice interface to easily keep track of which Pokémon you're missing. To make it easier, it presents
+the Pokémon in the form of PC boxes, the 6x5 grid showing 30 per box.
 
-## Data Sources
+Since Pokémon Home offers you rewards for each Pokédex you complete, Obtainadex organises each Pokédex based on the game
+it comes from. This enables you to have an overview on your progress in each game!
 
-Pokémon Home will be special based off of https://www.serebii.net/pokemonhome/depositablepokemon.shtml. It'll contain a
-full list of all the Pokémon, and I can include a _forms_ toggle specifically for Pokémon Home.
+## Features
 
-For other Pokémon games I'll include all their dexes, so for some it'll be the regional dex plus the national dex or DLC
-dexes. Additionally, I'm only going to include games released on the Switch to reduce the amount of data, but might
-consider returning to include the DS games and earlier.
+- Contains the individual dexes for all the Switch-era Pokémon games (and Home)
+- Dexes are grouped by game and broken into the individual relevant dexes
+- Toggle to enable the same Pokémon selected in one dex to show as collected in all dexes
+    - Default behaviour keeps them separate
+    - When toggled, it'll show the origin dex/game it was selected in
+- Data is saved in the website local storage with the ability to export as JSON to be imported or shared
+- Each Pokémon in the boxes has a link to the relevant Serebii page to show where it is obtained in the specific game
+- Bulk controls to quickly mark all within a box as obtained or unmark them all
 
+## Development
+
+TODO: add details about how to work with the codebase.
+
+Plan is to drive it all through `Makefile` so it's pretty easy to pick up if you're on a Unix-based system.
+
+## Data
+
+All the data is currently sourced from [Serebii](https://www.serebii.net/) as it provides accurate data for each game
+and their different Pokédexes.
+
+### Supported Games/Pokédexes
+
+Right now only the Switch games, including Pokémon Home, are supported.
+
+- Pokémon Home: https://www.serebii.net/pokemonhome/depositablepokemon.shtml
 - Pokémon: Let's Go, Pikachu! & Let's Go, Eevee!
     - Kanto: https://www.serebii.net/letsgopikachueevee/kantopokedex.shtml
 - Pokémon Sword & Shield
@@ -32,35 +53,23 @@ consider returning to include the DS games and earlier.
     - Blueberry: https://www.serebii.net/scarletviolet/blueberrypokedex.shtml
 - Pokémon Legends: Z-A:
     - Luminose: https://www.serebii.net/legendsz-a/availablepokemon.shtml
-- Pokémon Home:
-    - All: https://www.serebii.net/pokemonhome/depositablepokemon.shtml
 
-## Features
+### Data Configuration
 
-- Contains the individual dexes for all the Switch-era Pokémon games
-- Dexes are grouped by game and broken into the individual relevant dexes
-- Toggle to enable the same Pokémon selected in one dex to show as collected in all dexes
-    - Default behaviour keeps them separate; when toggled, it'll show the origin dex/game it was selected in
-- Data is saved in the website local storage with the ability to export as JSON to be re-imported or shared
-- Toggles will be available to toggle an entire box as obtained
-- Each Pokémon in the boxes also links to the relevant Serebii page to show where it is obtained in the specific game
+The scraping of the data from [Serebii](https://www.serebii.net/) is driven by the Python application in [data](./data)
+it uses Playwright to load the website, this allows it to settle and then have all the HTML available. Then, the HTML
+files are saved to a caching directory, so we do not need to keep requesting data from the website.
 
-## Data Scraping
+All the sources and selector configurations are stored within the [configuration file](./data/config.json). This defines
+the games and their Pokédexes and also provides the details on the site to get the data from and provides the selectors
+to collect the required information. The configuration can be changed, and you can even change it to use sites which are
+not the ones currently configured.
 
-The data for Obtainadex primarily comes from Serebii as it's a reliable source of data for Pokémon games.
-
-Within the `data` directory there is a script which uses Playwright to scrape the data for each Pokédex. The HTML files
-are also stored in here for each Pokédex so the Serebii site does not need to be queried everytime. This includes the
-data for each Pokémon.
-
-The reasoning for using Playwright instead of the request standard library is due to some sites requiring JS to be run
-to show the data in the DOM. This allows all JS to be executed and the HTML content can be scraped automatically.
-
-There is a `data/config.json` which defines where the data for each Pokémon should be gathered, it also includes the
-selectors Playwright should use to pull out the data we're interested in. The config is structured like so:
+Here's an overview of how that configuration is structured:
 
 ```json
 {
+  // Name of the Pokémon game the Pokédexes belong to
   "Pokémon: Let's Go, Pikachu! & Let's Go, Eevee!": [
     {
       // Order Pokedex comes in game
@@ -101,14 +110,3 @@ selectors Playwright should use to pull out the data we're interested in. The co
   ]
 }
 ```
-
-The HTML file cache is stored in a folder structure which mirrors the URL path, and where there's query parameters it
-encodes them using base64. This is primarily to make it easy to store files and cache, since some files might be
-duplicates.
-
-For example:
-
-- `https://www.serebii.net/letsgopikachueevee/kantopokedex.shtml`
-    - `cache/html/www.serebii.net/letsgopikachueevee/kantopokedex.shtml`
-- `https://www.serebii.net/pokedex-swsh/growlithe/?form=galarian&view=all` (fake example to show a query)
-    - `cache/html/www.serebii.net/pokedex-swsh/growlithe/_query_Zm9ybT1nYWxhcmlhbiZ2aWV3PWFsbA==.html`
