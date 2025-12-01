@@ -1,0 +1,292 @@
+{
+  "Pokémon: Let's Go, Pikachu! & Let's Go, Eevee!": [
+    {
+      "order": 0,
+      "name": "Kanto",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/letsgopikachueevee/kantopokedex.shtml",
+      "row_selector": "table:nth-of-type(2) tr:nth-of-type(n+3)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    }
+  ],
+  "Pokémon Sword & Shield": [
+    {
+      "order": 0,
+      "name": "Galar",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/swordshield/galarpokedex.shtml",
+      "row_selector": "table tr:nth-of-type(n+3)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "order": 1,
+      "name": "Isle of Armor",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/swordshield/isleofarmordex.shtml",
+      "row_selector": "table tr:nth-of-type(n+3)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "order": 2,
+      "name": "The Crown Tundra",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/swordshield/thecrowntundradex.shtml",
+      "row_selector": "table tr:nth-of-type(n+3)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    }
+  ],
+  "Pokémon Brilliant Diamond & Shining Pearl": [
+    {
+      "order": 0,
+      "name": "Sinnoh",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/brilliantdiamondshiningpearl/sinnohpokedex.shtml",
+      "row_selector": "table:nth-of-type(2) tr:not(:first-child)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "order": 1,
+      "name": "National",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/brilliantdiamondshiningpearl/otherpokemon.shtml",
+      "merge_with": [
+        "Sinnoh"
+      ],
+      "row_selector": "table tr:nth-of-type(n+2)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    }
+  ],
+  "Pokémon Legends: Arceus": [
+    {
+      "order": 0,
+      "name": "Hisui",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/legendsarceus/hisuipokedex.shtml",
+      "row_selector": "table:nth-of-type(2) tr:not(:first-child)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    }
+  ],
+  "Pokémon Scarlet & Violet": [
+    {
+      "order": 0,
+      "name": "Paldea",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/scarletviolet/paldeapokedex.shtml",
+      "row_selector": "table:nth-of-type(2) tr:not(:first-child)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "order": 1,
+      "name": "Kitakami",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/scarletviolet/kitakamipokedex.shtml",
+      "row_selector": "table tr:nth-of-type(n+2)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "order": 2,
+      "name": "Blueberry",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/scarletviolet/blueberrypokedex.shtml",
+      "row_selector": "table tr:nth-of-type(n+2)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    }
+  ],
+  "Pokémon Legends: Z-A": [
+    {
+      "order": 0,
+      "name": "Luminose",
+      "base_url": "https://www.serebii.net",
+      "pokedex_path": "/legendsz-a/availablepokemon.shtml",
+      "row_selector": "table:nth-of-type(2) tr:not(:first-child)",
+      "selectors": {
+        "pokedex_number": {
+          "selector": "td:nth-of-type(1)",
+          "type": "text"
+        },
+        "details_link": {
+          "selector": "td:nth-of-type(2) a",
+          "type": "href"
+        },
+        "image_url": {
+          "selector": "td:nth-of-type(2) img",
+          "type": "src"
+        },
+        "name": {
+          "selector": "td:nth-of-type(3) a",
+          "type": "text"
+        }
+      }
+    }
+  ]
+}
